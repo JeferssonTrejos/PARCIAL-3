@@ -2,7 +2,7 @@ const titleModule = document.getElementById('titleModule');
 const buttons_container = document.getElementById('buttons-container');
 const view_container = document.getElementById('view-container');
 const main_container = document.getElementById('main-container');
-const URL_API = 'http://localhost:5000/api/'  /* URL de la api */
+const URL_API = ''  /* URL de la api */
 
 // Realiza una solicitud 
 async function FetchData(method, params) {

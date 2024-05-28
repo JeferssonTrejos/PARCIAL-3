@@ -118,7 +118,7 @@ async function GetOneModule(id, CapNumber, action) {
     switch (action) {
         // Renderiza todos los temas del módulo en cards
         case 1:
-                ModuleThemes.forEach((e, key) => {
+            ModuleThemes.forEach((e, key) => {
                 let ThemeName = e.nombre;
                 let firsVideo = e.urlvideos[0].url;
                 let banner = firsVideo.split('=')

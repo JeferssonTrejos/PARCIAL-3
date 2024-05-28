@@ -8,6 +8,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use('/api/curso', modulos);
+app.use('/', express.static('public'));
 
 mongoose.connect('mongodb://localhost:27017/dbcurso', {
     useNewUrlParser: true,

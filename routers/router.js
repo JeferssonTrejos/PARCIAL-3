@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Modulo = require('../models/model'); 
 
-
 router.get('/', async (req, res) => {
     try {
         const modulos = await Modulo.find();
@@ -11,7 +10,6 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
 
 router.post('/', async (req, res) => {
     const modulo = new Modulo({
@@ -28,7 +26,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-
 router.get('/:id', async (req, res) => {
     try {
         const modulo = await Modulo.findById(req.params.id);
@@ -40,7 +37,6 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
 
 router.put('/:id', async (req, res) => {
     try {
@@ -55,19 +51,7 @@ router.put('/:id', async (req, res) => {
             modulo.titulo = req.body.titulo;
         }
         if (req.body.temas != null) {
-            for (let tema in req.body.temas) {
-                if (modulo.temas[tema] != null) {
-                    if (req.body.temas[tema].nombre != null) {
-                        modulo.temas[tema].nombre = req.body.temas[tema].nombre;
-                    }
-                    if (req.body.temas[tema].descripcion != null) {
-                        modulo.temas[tema].descripcion = req.body.temas[tema].descripcion;
-                    }
-                    if (req.body.temas[tema].urlvideos != null) {
-                        modulo.temas[tema].urlvideos = req.body.temas[tema].urlvideos;
-                    }
-                }
-            }
+            modulo.temas = req.body.temas;
         }
 
         const moduloActualizado = await modulo.save();
@@ -77,16 +61,13 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-
-
 router.delete('/:id', async(req, res)=>{
     try{
-        const deletecurso = await Modulo.findByIdAndDelete(req.params.id);
-        res.status(201).json(deletecurso);
+        const deleteModulo = await Modulo.findByIdAndDelete(req.params.id);
+        res.status(200).json(deleteModulo); // Cambiado de 201 a 200
     } catch (error) {
-        res.status(500).send(err.message)
+        res.status(500).send(error.message)
     }
 });
-
 
 module.exports = router;

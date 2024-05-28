@@ -17,7 +17,7 @@ async function FetchData(method, params) {
     };
 
     // Realizar la solicitud fetch
-    let result = await fetch(URL_API+id, options)
+    let result = await fetch(URL_API + id, options)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
@@ -54,13 +54,13 @@ async function GetAllModules() {
         buttons_container.insertAdjacentHTML('beforeend', div_buttons)
 
         // Crea cards para cada tema del módulo y se agregan al contenedor principal
-        Object.keys(ModuleThemes).forEach((key, ThemeNumber) => {
-            let name = ModuleThemes[key].nombre;
-            let firsVideo = ModuleThemes[key].urlvideos[0].url;
+        ModuleThemes.forEach((e, key) => {
+            let name = e.nombre;
+            let firsVideo = e.urlvideos[0].url;
             let banner = firsVideo.split('=')
 
             let div_data = `
-                <div onclick="GetOneModule('${ModuleID}', '${ThemeNumber}',2)" class="main-cards-card drop-shadow">
+                <div onclick="GetOneModule('${ModuleID}', '${key}',2)" class="main-cards-card drop-shadow">
                     <img class="card-img" src="https://i.ytimg.com/vi/${banner[1]}/hqdefault.jpg" alt="image">
                     <span class="card-t itle">Cap. ${CapNumber} - ${name}</span>
                 </div>
@@ -84,10 +84,10 @@ async function GetOneModule(id, CapNumber, action) {
     view_container.innerHTML = ''
 
     // agregando los temas al DOM
-    function addThemes(key, ThemeNumber) {
-        let name = ModuleThemes[key].nombre;
-        let body = ModuleThemes[key].descripcion;
-        let urlvideos = ModuleThemes[key].urlvideos;
+    function addThemes(element, key) {
+        let name = element.nombre;
+        let body = element.descripcion;
+        let urlvideos = element.urlvideos;
         let youtube_videos = ``
 
         // Obteniendo url de los videos de cada tema
@@ -118,15 +118,15 @@ async function GetOneModule(id, CapNumber, action) {
     switch (action) {
         // Renderiza todos los temas del módulo en cards
         case 1:
-            Object.keys(ModuleThemes).forEach((key, ThemeNumber) => {
-                let ThemeName = ModuleThemes[key].nombre;
-                let firsVideo = ModuleThemes[key].urlvideos[0].url;
+                ModuleThemes.forEach((e, key) => {
+                let ThemeName = e.nombre;
+                let firsVideo = e.urlvideos[0].url;
                 let banner = firsVideo.split('=')
 
                 let div_data = `
-                    <div onclick="GetOneModule('${ModuleID}', '${ThemeNumber}',2)" class="main-cards-card drop-shadow">
+                    <div onclick="GetOneModule('${ModuleID}', '${key}',2)" class="main-cards-card drop-shadow">
                         <img class="card-img" src="https://i.ytimg.com/vi/${banner[1]}/hqdefault.jpg" alt="image">
-                        <span class="card-title">Cap. ${ThemeNumber + 1} - ${ThemeName}</span>
+                        <span class="card-title">Cap. ${key + 1} - ${ThemeName}</span>
                     </div>
                 `;
                 main_container.insertAdjacentHTML('beforeend', div_data)
@@ -157,16 +157,18 @@ async function GetOneModule(id, CapNumber, action) {
             break
         case 2:
             // Renderiza solo el tema especificado
-            Object.keys(ModuleThemes).forEach((key, ThemeNumber) => {
-                if (CapNumber == ThemeNumber) {
-                    addThemes(key, ThemeNumber)
+            ModuleThemes.forEach((e, key) => {
+                if (CapNumber == key) {
+                    addThemes(e, key)
                 }
             })
             break
         default:
             // Renderiza TODOS los temas
-            Object.keys(ModuleThemes).forEach((key, ThemeNumber) => {
-                addThemes(key, ThemeNumber)
+            ModuleThemes.forEach((e, key) => {
+                console.log(e);
+
+                addThemes(e, key)
             })
             break
 

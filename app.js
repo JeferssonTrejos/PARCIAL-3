@@ -10,10 +10,7 @@ app.use(bodyParser.json());
 app.use('/api/curso', modulos);
 app.use('/', express.static('public'));
 
-mongoose.connect('mongodb://localhost:27017/dbcurso', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect('mongodb://localhost:27017/dbcurso');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error de conexión de MongoDB:'));

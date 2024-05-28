@@ -15,14 +15,8 @@ const temaSchema = new mongoose.Schema({
 const moduloSchema = new mongoose.Schema({
     imagen: String, 
     titulo: String, 
-    temas: {
-        tema1: temaSchema,
-        tema2: temaSchema,
-        tema3: temaSchema,
-        tema4: temaSchema,
-        tema5: temaSchema
-    }
-});
+    temas: [temaSchema]
+})
 
 const Modulo = mongoose.model('modulos', moduloSchema);
 

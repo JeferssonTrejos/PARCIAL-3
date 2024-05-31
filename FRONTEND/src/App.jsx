@@ -33,13 +33,11 @@ const App = () => {
       setSelectModule(response.data);
       changeAction(action)
       setCap(cap)
-      // console.log(response.data);
-
+      
     } catch (error) {
       console.error('Error fetching module:', error);
     }
   };
-
 
   return (
     <div className="main-container">

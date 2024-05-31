@@ -41,10 +41,8 @@ async function GetAllModules() {
 
     result.forEach((e, key) => {
         const ModuleName = e.titulo
-        const ModuleBanner = e.imagen
         const ModuleID = e._id
         const ModuleNumber = key + 1
-        const banner_URL = './img/hqdefault.jpg'
         const ModuleThemes = e.temas
 
         // Crea un botón para cada módulo y se agrega al contenedor

@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const modulos = require('./routers/router');
+const cors = require('cors');
 
 const app = express();
 
 const port = process.env.MONGO_PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use('/api/curso', modulos);
 app.use('/', express.static('public'));
 

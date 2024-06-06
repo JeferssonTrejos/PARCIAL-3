@@ -114,4 +114,5 @@ body {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   margin: 0 3px;
+  margin-top: 6px;
 }

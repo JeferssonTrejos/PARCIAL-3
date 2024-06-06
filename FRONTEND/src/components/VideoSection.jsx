@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const VideoSection = ({ theme }) => {
     return (
         <div>
@@ -22,7 +21,6 @@ const VideoSection = ({ theme }) => {
                 })}
             </section>
         </div>
-
     );
 };
 

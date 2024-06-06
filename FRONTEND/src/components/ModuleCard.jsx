@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ModuleCard = ({ theme, changeAction, ID, page, GetOneModule }) => {
-
     const firstVideo = theme.urlvideos[0].url;
     const banner = firstVideo.split('=')[1];
 
@@ -12,6 +11,5 @@ const ModuleCard = ({ theme, changeAction, ID, page, GetOneModule }) => {
         </div>
     );
 };
-
 
 export default ModuleCard;

@@ -1,11 +1,10 @@
 import React from 'react';
 import VideoSection from './VideoSection';
 import ModuleCard from './ModuleCard';
-import img from '../assets/hqdefault.jpg';
+import img from '../assets/img-showall.png';
 import Header from './Header';
 
 const MainContent = ({ GetOneModule, selectModule, modules, action, changeAction, cap }) => {
-    // cap = cap
     switch (action) {
         case 1:
             return (
@@ -57,7 +56,7 @@ const MainContent = ({ GetOneModule, selectModule, modules, action, changeAction
                             })}
 
                             <div className="main-cards-card drop-shadow" onClick={() => { GetOneModule(selectModule._id, 3, null) }} >
-                                <img className="card-img" src={`https://i.ytimg.com/vi/hqdefault.jpg`} alt="image" />
+                                <img className="card-img" src={img} alt="image" />
                                 <span className="card-title">Ver todo</span>
                             </div>
                         </div>
@@ -93,7 +92,5 @@ const MainContent = ({ GetOneModule, selectModule, modules, action, changeAction
             break;
     }
 };
-
-
 
 export default MainContent;
